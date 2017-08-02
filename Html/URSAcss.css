@@ -101,5 +101,17 @@ input[type='range']::-webkit-slider-runnable-track {
   box-shadow: 0 1px 2px #def3f8, inset 0 .225em .225em #0d1112;
   background: #7ab9b3;
 }
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 5% 0px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: red;
+}
 
 </style>
