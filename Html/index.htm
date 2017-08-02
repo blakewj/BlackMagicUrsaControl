@@ -30,10 +30,10 @@
 	<h3>Control Panel</h3>
 	<div>
         
-        <a href=\"demo" target=\"inlineframe\">White Balcne</a>
+        <a href=\"" target=\"inlineframe\">White Balcne</a>
         <input type="range" id="myRange" value="50" >
         <p id="demo"></p>
-        <button onclick="myFunction()">Try it</button>
+        <button onclick="myFunction()">Push</button>
         
     </div>
 	</div>
@@ -42,7 +42,7 @@
 function myFunction() {
     var x = document.getElementById("myRange").value;
     document.getElementById("demo").innerHTML = x;
-    
+    document.getElementById("demo").href = x;
 }
 </script>
 

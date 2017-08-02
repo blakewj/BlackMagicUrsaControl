@@ -64,7 +64,7 @@ if (c == '\n') {
 	client.println("HTTP/1.1 200 OK"); //send new page
 	client.println("Content-Type: text/html");
 
-  //Serial.println(readString);
+  Serial.println(readString);
  // if (readString.equals ("GET /%22?AF%22 HTTP/1.1")) { //test for servo control sring
 	pos = readString.length(); 								//capture string length
 	ind1 = readString.indexOf("AF");						//find start of HTTP string "AF"
