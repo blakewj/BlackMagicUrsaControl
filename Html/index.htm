@@ -29,17 +29,8 @@
 <div class = "col-9 base">
 	<h3>Control Panel</h3>
 	
-<script>
-v
-</script>
-    
-<script>
-function myFunction() {
-    var burl = "WB" + document.getElementById("myRange").value;;
-    var x = document.getElementById("myRange").value;
-    document.getElementById("demo").innerHTML = x;
-    document.getElementById("burl").href = x;
-</script> 
+
+
     
     
     
@@ -47,7 +38,7 @@ function myFunction() {
     
     <div>
         
-        <a href=\"" id="burl" target=\"inlineframe\">White Balcne</a>
+        <a href=\"" id="WB" target=\"inlineframe\">White Balcne</a>
         <input type="range" id="myRange" value="50" >
         <p id="demo"></p>
         <button onclick="myFunction()">Push</button>
@@ -55,7 +46,14 @@ function myFunction() {
     </div>
 	</div>
 
+<script>
+function myFunction() {
+    var WB = "WB" + document.getElementById("myRange").value;;
+    var x = document.getElementById("myRange").value;
+    document.getElementById("demo").innerHTML = x;
+    document.getElementById("WB").href = WB;
 }
+</script> 
 
 
 
