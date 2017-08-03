@@ -17,7 +17,7 @@
 <div class="col-2 menu">
   <ul>
     <li>
-    <form action="" method="post">
+    <form action="" method="get">
         <a href=\"" id = "?AF%" onclick = "HTTPsend('?AF%')" target=\"inlineframe\">Auto Focus</a>
     
     </form>
@@ -67,7 +67,7 @@ function HTTPsend(url){
 </script>  
 <script>    
 function myFunction(url,val) {
-    var x = url + document.getElementById(val).value+"%";
+    var x = url +"-"+ document.getElementById(val).value+"%";
     
     document.getElementById("demo").innerHTML = x;
     document.getElementById(url).href = x;

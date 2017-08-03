@@ -16,10 +16,14 @@ BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
 String teststring = String(100);
 String finalstring = String(100);
 String flag = String(2);
+String header = String(100);
+int Slider1 =0;
+int Slider2 =0;
 int ind1 = 0;
 int ind2 = 0;
 int pos = 0;
-int MFOC = 0;
+float MFOC;
+String slideVal = String(100);
 //////////////////////
 
 void setup() {
@@ -72,24 +76,41 @@ if (c == '\n') {
 	client.println("HTTP/1.1 200 OK"); //send new page
 	client.println("Content-Type: text/html");
 
-  Serial.println(readString);
- // if (readString.equals ("GET /%22?AF%22 HTTP/1.1")) { //test for servo control sring
+  //Serial.println(readString);
+ 
 	pos = readString.length(); 							//capture string length
-	ind1 = readString.indexOf("?")+1;						//find start of HTTP string "AF"
+	ind1 = readString.indexOf("?")+1;	//find start of HTTP string "?"
+  Slider1 = readString.indexOf("#")+1;
+
+  
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
 	ind2 = teststring.indexOf("%");						//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
- 
+  header = readString.substring(ind1, ind2 + ind1-ind1+2);
+  slideVal = readString.substring(Slider1,pos);
   
-  
-  if(readString.substring(ind1, ind2 + ind1-ind1+2)=="MF"){
+  if(header =="MF"){
    
-   Serial.println(readString.substring(ind1+2, ind2-2 + ind1+2));
-   MFOC = readString.substring(ind1+2, ind2-2 + ind1+2).toInt();
-   MFocus(MFOC);
+   
+   Serial.println(header);
+   Serial.println(slideVal);
+   //MFOC = header.toInt();
+   //MFocus(MFOC);
    Serial.println("Manual Focusssss");
               }
-Serial.println(finalstring);
+
+ if(header=="FS"){
+   
+   Serial.println(header);
+   Serial.println(slideVal);
+   //MFOC = header.toInt();
+  // MFocus(MFOC);
+   Serial.println("Manual F-stop");
+              }
+
+
+              
+
             if(finalstring=="AF"){
             	Serial.println("AutoFocus");
             	AutoFocus();
@@ -150,6 +171,8 @@ Serial.println(finalstring);
 }
 
 void Apeture(float scaledZoom){
+  sdiCameraControl.begin();
+  sdiCameraControl.setOverride(true);
       sdiCameraControl.writeCommandFixed16(
       1,         // Destination:    Camera 1
       0,         // Category:       Lens
@@ -170,6 +193,8 @@ void AutoFocus(){
 
 
 void SensorGain(int sensor){
+  sdiCameraControl.begin();
+  sdiCameraControl.setOverride(true);
   sdiCameraControl.writeCommandInt8(
       1,         // Destination:    Camera 1
       1,         // Category:       video
@@ -178,6 +203,8 @@ void SensorGain(int sensor){
       sensor );}
 
 void MWhiteBalance(int WB){
+  sdiCameraControl.begin();
+  sdiCameraControl.setOverride(true);
       sdiCameraControl.writeCommandInt16(
       1,         // Destination:    Camera 1
       1,         // Category:       video
@@ -186,6 +213,8 @@ void MWhiteBalance(int WB){
       WB );}
 
 void Exposure(int Exposure){
+  sdiCameraControl.begin();
+  sdiCameraControl.setOverride(true);
       sdiCameraControl.writeCommandInt16(
       1,         // Destination:    Camera 1
       1,         // Category:       Lens
@@ -194,6 +223,8 @@ void Exposure(int Exposure){
       Exposure );}
 
 void MFocus(float focus){
+  sdiCameraControl.begin();
+  sdiCameraControl.setOverride(true);
       sdiCameraControl.writeCommandInt16(
       1,         // Destination:    Camera 1
       0,         // Category:       Lens
