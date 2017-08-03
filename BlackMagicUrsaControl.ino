@@ -80,11 +80,15 @@ if (c == '\n') {
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
 Serial.println(finalstring);
             if(finalstring=="AF"){
-            	Serial.println("im a fuction");
+            	Serial.println("AutoFocus");
             	AutoFocus();
             	Serial.println(finalstring);}
              if(finalstring=="AWB"){
-             Serial.println("im a fuction");
+             Serial.println("AutoAppeture");
+              AutoAppeture();
+              Serial.println(finalstring);}
+             if(finalstring=="MF"){
+             Serial.println("Manual Focus");
               AutoAppeture();
               Serial.println(finalstring);}
 
