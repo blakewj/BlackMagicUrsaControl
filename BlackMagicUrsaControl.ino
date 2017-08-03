@@ -183,6 +183,14 @@ void Exposure(int Exposure){
       0,         // Operation:      Assign Value
       Exposure );}
 
+void MFocus(float focus){
+      sdiCameraControl.writeCommandInt16(
+      1,         // Destination:    Camera 1
+      0,         // Category:       Lens
+      0,         // Param:         focus
+      0,         // Operation:      Assign Value
+      focus );}
+
 
 
 
