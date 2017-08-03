@@ -81,7 +81,7 @@ if (c == '\n') {
  
 	pos = readString.length(); 							//capture string length
 	ind1 = readString.indexOf("?")+1;	//find start of HTTP string "?"
-  Slider1 = readString.indexOf("-")+1;
+  Slider1 = readString.indexOf("&")+1;
 
   
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
