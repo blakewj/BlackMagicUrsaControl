@@ -74,11 +74,11 @@ if (c == '\n') {
   Serial.println(readString);
  // if (readString.equals ("GET /%22?AF%22 HTTP/1.1")) { //test for servo control sring
 	pos = readString.length(); 							//capture string length
-	ind1 = readString.indexOf("#");						//find start of HTTP string "AF"
+	ind1 = readString.indexOf("?")+1;						//find start of HTTP string "AF"
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
 	ind2 = teststring.indexOf("%");						//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
-	Serial.println(ind1);
+Serial.println(finalstring);
             if(finalstring=="AF"){
             	Serial.println("im a fuction");
             	//AutoFocus();
