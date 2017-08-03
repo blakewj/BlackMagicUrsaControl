@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,13 +18,17 @@
   <ul>
     <li>
     <form action="" method="post">
-        <a href=\"?AF" target=\"inlineframe\">Auto Focus</a>
+        <a href=\"" id = "AF" onclick = "HTTPsend('AF')"target=\"inlineframe\">Auto Focus</a>
+    
     </form>
       
 
-    <li>    
-      </li>
-    <li>focus</li>
+        
+        <li>
+            <form action="" method="post">
+                <a href=\"" id = "AWB" onclick = "HTTPsend('AWB')"target=\"inlineframe\">Auto Wite Balance</a> </form>
+        </li>
+       
   </ul>
 </div>
 
@@ -37,21 +43,28 @@
     
     
     <div>
-        
-        <a href=\"" id="WB" target=\"inlineframe\">White Balcne</a>
+        <form action="" method="post">
+        <a href=\"" id="WBL" onclick = "myFunction()"target=\"inlineframe\">White Balcne</a>
         <input type="range" id="myRange" value="50" >
-        <p id="demo"></p>
-        <button onclick="myFunction()">Push</button>
+            <p id="demo"></p></form>
+        
         
     </div>
 	</div>
 
 <script>
+function HTTPsend(url){
+    var AWBL = url;
+    document.getElementById(url).href = AWBL;
+   
+}
+</script>  
+<script>    
 function myFunction() {
-    var WB = "WB" + document.getElementById("myRange").value;;
+    var WBL = "WBL" + document.getElementById("myRange").value;;
     var x = document.getElementById("myRange").value;
-    document.getElementById("demo").innerHTML = x;
-    document.getElementById("WB").href = WB;
+    document.getElementById("demo").innerHTML = WBL;
+    document.getElementById("WBL").href = WBL;
 }
 </script> 
 

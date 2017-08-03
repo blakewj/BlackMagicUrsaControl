@@ -69,7 +69,7 @@ html {
     padding: 0;
 }
 .menu li {
-    padding: 25%;
+    padding: 15%;
     margin-bottom: 5px;
     background-color: #878888;
     color: #ffffff;
@@ -102,9 +102,9 @@ input[type='range']::-webkit-slider-runnable-track {
   background: #7ab9b3;
 }
 a:link, a:visited {
+    padding: 10px;
     background-color: #f44336;
     color: white;
-    padding: 5% 0px;
     text-align: center; 
     text-decoration: none;
     display: inline-block;
