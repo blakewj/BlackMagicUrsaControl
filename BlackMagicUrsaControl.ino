@@ -1,5 +1,5 @@
 //#include "Arduino.h"
-#include <BMDSDIControl.h>
+//#include <BMDSDIControl.h>
 #include <String.h>
 #include <Ethernet.h>
 #include <SD.h>
@@ -10,7 +10,7 @@ byte subnet[] = { 255, 255, 255, 0 }; //subnet mask
 EthernetServer server(80); //server port
 String readString = String(100); //string for fetching data from address
 //BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
-File webFile;
+
 
 ///////////////////////
 String teststring = String(100);
@@ -73,20 +73,20 @@ if (c == '\n') {
 
   Serial.println(readString);
  // if (readString.equals ("GET /%22?AF%22 HTTP/1.1")) { //test for servo control sring
-	pos = readString.length(); 								//capture string length
+	pos = readString.length(); 							//capture string length
 	ind1 = readString.indexOf("#");						//find start of HTTP string "AF"
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
 	ind2 = teststring.indexOf("%");						//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
-	
+	Serial.println(ind1);
             if(finalstring=="AF"){
             	Serial.println("im a fuction");
             	//AutoFocus();
-            	Serial.println(finalstring);}
+            	client.println(finalstring);}
              if(finalstring=="AWB"){
              Serial.println("im a fuction");
               //AutoAppeture();
-              Serial.println(finalstring);}
+              client.println(finalstring);}
 
         
           File myFile = SD.open("index.htm");
