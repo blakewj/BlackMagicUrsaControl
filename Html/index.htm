@@ -25,8 +25,8 @@
 
         
         <li>
-            
-                <a href=\"" id = "?AWB%" onclick = "HTTPsend('?AWB%')"target=\"inlineframe\">Auto Wite Balance</a>
+            <form action="" method="post">
+                <a href=\"" id = "?AWB%" onclick = "HTTPsend('?AWB%')"target=\"inlineframe\">Auto Wite Balance</a></form>
         </li>
        
   </ul>
@@ -44,7 +44,7 @@
     
     <div>
         <form action="" method="get">
-        <a href=\"" id="#WBL%" onclick = "myFunction()"target=\"inlineframe\">White Balcne</a>
+        <a href=\"" id="?WBL%" onclick = "myFunction()"target=\"inlineframe\">White Balcne</a>
         <input type="range" id="myRange" value="50" onclick = "myFunction()">
             <p id="demo"></p></form>
         
@@ -61,7 +61,7 @@ function HTTPsend(url){
 </script>  
 <script>    
 function myFunction() {
-    var WBL = "#WBL" + document.getElementById("myRange").value+"%";
+    var WBL = "?WBL" + document.getElementById("myRange").value+"%";
     var x = document.getElementById("myRange").value;
     document.getElementById("demo").innerHTML = WBL;
     document.getElementById("#WBL%").href = WBL;

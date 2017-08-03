@@ -82,11 +82,11 @@ if (c == '\n') {
             if(finalstring=="AF"){
             	Serial.println("im a fuction");
             	//AutoFocus();
-            	client.println(finalstring);}
+            	Serial.println(finalstring);}
              if(finalstring=="AWB"){
              Serial.println("im a fuction");
               //AutoAppeture();
-              client.println(finalstring);}
+              Serial.println(finalstring);}
 
         
           File myFile = SD.open("index.htm");
