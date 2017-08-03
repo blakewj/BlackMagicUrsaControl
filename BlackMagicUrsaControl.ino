@@ -14,6 +14,7 @@ BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
 
 ///////////////////////
 String teststring = String(100);
+String teststring2 = String(100);
 String finalstring = String(100);
 String flag = String(2);
 String header = String(100);
@@ -76,26 +77,27 @@ if (c == '\n') {
 	client.println("HTTP/1.1 200 OK"); //send new page
 	client.println("Content-Type: text/html");
 
-  //Serial.println(readString);
+  Serial.println(readString);
  
 	pos = readString.length(); 							//capture string length
 	ind1 = readString.indexOf("?")+1;	//find start of HTTP string "?"
-  Slider1 = readString.indexOf("#")+1;
+  Slider1 = readString.indexOf("-")+1;
 
   
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
+  teststring2 = readString.substring(Slider1,pos);      //capture front part of command string
 	ind2 = teststring.indexOf("%");						//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
-  header = readString.substring(ind1, ind2 + ind1-ind1+2);
-  slideVal = readString.substring(Slider1,pos);
-  
+  header = readString.substring(ind1, ind2 + ind1-ind1+1);
+  slideVal = readString.substring(Slider1, ind2 + Slider1-3);
+ 
   if(header =="MF"){
    
    
    Serial.println(header);
    Serial.println(slideVal);
-   //MFOC = header.toInt();
-   //MFocus(MFOC);
+   MFOC = slideVal.toFloat();
+   MFocus(MFOC);
    Serial.println("Manual Focusssss");
               }
 
@@ -103,8 +105,17 @@ if (c == '\n') {
    
    Serial.println(header);
    Serial.println(slideVal);
-   //MFOC = header.toInt();
-  // MFocus(MFOC);
+   MFOC = header.toInt();
+   Apeture(MFOC);
+   Serial.println("Manual F-stop");
+              }
+
+ if(header=="SG"){
+   
+   Serial.println(header);
+   Serial.println(slideVal);
+   MFOC = header.toInt();
+   SensorGain(MFOC);
    Serial.println("Manual F-stop");
               }
 
