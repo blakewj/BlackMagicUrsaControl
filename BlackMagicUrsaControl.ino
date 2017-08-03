@@ -1,4 +1,4 @@
-#include "Arduino.h"
+//#include "Arduino.h"
 #include <BMDSDIControl.h>
 #include <String.h>
 #include <Ethernet.h>
@@ -10,7 +10,7 @@ byte subnet[] = { 255, 255, 255, 0 }; //subnet mask
 EthernetServer server(80); //server port
 String readString = String(100); //string for fetching data from address
 BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
-
+File webFile;
 
 ///////////////////////
 String teststring = String(100);
@@ -48,8 +48,7 @@ digitalWrite(LED_BUILTIN, LOW);
 //--------------------------------//
 
 //---- Turn on control overrides----//
-    sdiCameraControl.begin();
-    sdiCameraControl.setOverride(true);
+
 
 }
 void loop() {
@@ -75,26 +74,21 @@ if (c == '\n') {
   Serial.println(readString);
  // if (readString.equals ("GET /%22?AF%22 HTTP/1.1")) { //test for servo control sring
 	pos = readString.length(); 								//capture string length
-	ind1 = readString.indexOf("AF");						//find start of HTTP string "AF"
+	ind1 = readString.indexOf("/");						//find start of HTTP string "AF"
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
-	ind2 = teststring.indexOf("%2");						//Find The End Of The HTTP String
+	ind2 = teststring.indexOf("/");						//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
-	//print "finalstring" to com port;
+	Serial.println (finalstring); //to com port;
             if(finalstring=="AF"){
             	Serial.println("im a fuction");
             	AutoFocus();
             	Serial.println(finalstring);}
+             if(finalstring=="AWB"){
+             Serial.println("im a fuction");
+              AutoAppeture();
+              Serial.println(finalstring);}
 
-          //}
-       /*   if (readString == ("Slidervalue")) {
-            ind1 = readString.indexOf('u');
-            ind2 = readString.indexOf('&');
-            finalstring = readString.substring(ind1 + 1, ind2);
-            finalstring.replace('e', '#');
-            finalstring.replace('=', 'p');
-            Serial.println(finalstring);
-
-          }*/
+        
           File myFile = SD.open("index.htm");
           if (myFile) {
             // read from the file until there's nothing else in it:
@@ -132,7 +126,8 @@ if (c == '\n') {
   }
  void AutoAppeture() {
   // This sends an Auto Iris adjustment command, with a simple camera control packet.
-
+  sdiCameraControl.begin();
+  sdiCameraControl.setOverride(true);
   sdiCameraControl.writeCommandVoid(
       1,   // Destination:    Camera 1
       0,   // Category:       Lens
@@ -151,6 +146,8 @@ void Apeture(float scaledZoom){
   
 
 void AutoFocus(){
+    sdiCameraControl.begin();
+    sdiCameraControl.setOverride(true);
   sdiCameraControl.writeCommandVoid(
       1,   // Destination:    Camera 1
       0,   // Category:       lens
