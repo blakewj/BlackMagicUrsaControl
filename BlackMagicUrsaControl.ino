@@ -9,7 +9,7 @@ byte ip[] = { 192, 168, 10, 180 }; // ip
 byte subnet[] = { 255, 255, 255, 0 }; //subnet mask
 EthernetServer server(80); //server port
 String readString = String(100); //string for fetching data from address
-BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
+//BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
 File webFile;
 
 ///////////////////////
@@ -24,17 +24,17 @@ int pos = 0;
 void setup() {
 pinMode(LED_BUILTIN, OUTPUT);
 digitalWrite(LED_BUILTIN, LOW);
-//----enable serial data print�----//
 
-  Serial.begin(9600);
 
 //----turn off Ethernet to load SD card----//
 
   pinMode(10,OUTPUT);
   digitalWrite(10,HIGH);
+//----enable serial data print�----//
 
+  Serial.begin(9600); 
 //---- Starting SD Card Int----//
-
+  
   Serial.print("Starting SD..");
   if(!SD.begin(4)) Serial.println("failed");
   else Serial.println("ok");
@@ -74,18 +74,18 @@ if (c == '\n') {
   Serial.println(readString);
  // if (readString.equals ("GET /%22?AF%22 HTTP/1.1")) { //test for servo control sring
 	pos = readString.length(); 								//capture string length
-	ind1 = readString.indexOf("/");						//find start of HTTP string "AF"
+	ind1 = readString.indexOf("#");						//find start of HTTP string "AF"
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
-	ind2 = teststring.indexOf("/");						//Find The End Of The HTTP String
+	ind2 = teststring.indexOf("%");						//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
-	Serial.println (finalstring); //to com port;
+	
             if(finalstring=="AF"){
             	Serial.println("im a fuction");
-            	AutoFocus();
+            	//AutoFocus();
             	Serial.println(finalstring);}
              if(finalstring=="AWB"){
              Serial.println("im a fuction");
-              AutoAppeture();
+              //AutoAppeture();
               Serial.println(finalstring);}
 
         
@@ -123,7 +123,7 @@ if (c == '\n') {
       }
     }
   }
-  }
+  }/*
  void AutoAppeture() {
   // This sends an Auto Iris adjustment command, with a simple camera control packet.
   sdiCameraControl.begin();
@@ -180,7 +180,7 @@ void Exposure(int Exposure){
       Exposure );}
 
 
-
+*/
 
 
 
