@@ -72,7 +72,7 @@ function HTTPsend(url){
 </script>  
 <script>    
 function myFunction(url,val) {
-    var x = url +"-"+ document.getElementById(val).value+"%";
+    var x = url +"&"+ document.getElementById(val).value+"%";
     
     document.getElementById("demo").innerHTML = x;
     document.getElementById(url).href = x;

@@ -86,12 +86,16 @@ if (c == '\n') {
   
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
   teststring2 = readString.substring(Slider1,pos);      //capture front part of command string
-	ind2 = teststring.indexOf("%");						//Find The End Of The HTTP String
+	ind2 = teststring.indexOf("%");	
+	Slider2 = teststring2.indexOf("%");//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
-  header = readString.substring(ind1, ind2 + ind1-ind1+1);
-  slideVal = readString.substring(Slider1, ind2 + Slider1-3);
- 
-  if(header =="MF"){
+  header = readString.substring(ind1, Slider1-1);
+  slideVal = readString.substring(Slider2, ind2);
+   //Serial.println(header);
+   Serial.println("------");
+   Serial.println(slideVal);
+   Serial.println("---  ---");
+ /* if(header =="MF"){
    
    
    Serial.println(header);
@@ -117,7 +121,7 @@ if (c == '\n') {
    MFOC = header.toInt();
    SensorGain(MFOC);
    Serial.println("Manual F-stop");
-              }
+              }*/
 
 
               
