@@ -19,6 +19,7 @@ String flag = String(2);
 int ind1 = 0;
 int ind2 = 0;
 int pos = 0;
+int MFOC = 0;
 //////////////////////
 
 void setup() {
@@ -78,6 +79,16 @@ if (c == '\n') {
 	teststring = readString.substring(ind1,pos);			//capture front part of command string
 	ind2 = teststring.indexOf("%");						//Find The End Of The HTTP String
 	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
+ 
+  
+  
+  if(readString.substring(ind1, ind2 + ind1-ind1+2)=="MF"){
+   
+   Serial.println(readString.substring(ind1+2, ind2-2 + ind1+2));
+   MFOC = readString.substring(ind1+2, ind2-2 + ind1+2).toInt();
+   MFocus(MFOC);
+   Serial.println("Manual Focusssss");
+              }
 Serial.println(finalstring);
             if(finalstring=="AF"){
             	Serial.println("AutoFocus");
@@ -87,10 +98,9 @@ Serial.println(finalstring);
              Serial.println("AutoAppeture");
               AutoAppeture();
               Serial.println(finalstring);}
-             if(finalstring=="MF"){
-             Serial.println("Manual Focus");
-              AutoAppeture();
-              Serial.println(finalstring);}
+             
+             
+             
 
         
           File myFile = SD.open("index.htm");

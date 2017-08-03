@@ -26,8 +26,9 @@
         
         <li>
             <form action="" method="post">
-                <a href=\"" id = "?AWB%" onclick = "myFunction('?AWB%')"target=\"inlineframe\">Auto Wite Balance</a></form>
+                <a href=\"" id = "?AWB%" onclick = "HTTPsend('?AWB%')"target=\"inlineframe\">Auto White Balance</a></form>
         </li>
+      
        
   </ul>
 </div>
@@ -44,9 +45,14 @@
     
     <div>
         <form action="" method="post">
-        <a href=\"" id="?MF%" onclick = "myFunction()" target=\"inlineframe\">Manual Focus</a>
-        <input type="range" min ="0.0" max="1.0" step ="0.01" id="FocusSlider" onclick = "myFunction()">
+        <a href=\"" id="?MF" onclick = "myFunction('?MF','FocusSlider')" target=\"inlineframe\">Manual Focus</a>
+        <input type="range" min ="0.0" max="1.0" step ="0.01" id="FocusSlider" onclick = "myFunction('?MF','FocusSlider')">
             <p id="demo"></p></form>
+        
+        <form action="" method="post">
+        <a href=\"" id="?FS" onclick = "myFunction('?FS','APSlider')" target=\"inlineframe\">Appeture</a>
+        <input type="range" min ="-0.1" max="16.0" step ="0.1" id="APSlider" onclick = "myFunction('?FS','APSlider')"></form>
+
         
         
     </div>
@@ -60,11 +66,11 @@ function HTTPsend(url){
 }
 </script>  
 <script>    
-function myFunction() {
-    var MF = "?MF" + document.getElementById("FocusSlider").value+"%";
-    var x = document.getElementById("FocusSlider").value;
-    document.getElementById("demo").innerHTML = MF;
-    document.getElementById("?MF%").href = MF;
+function myFunction(url,val) {
+    var x = url + document.getElementById(val).value+"%";
+    
+    document.getElementById("demo").innerHTML = x;
+    document.getElementById(url).href = x;
 }
 </script> 
 
