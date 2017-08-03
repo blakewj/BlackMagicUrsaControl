@@ -1,13 +1,16 @@
 #include "Arduino.h"
+#include <BMDSDIControl.h>
 #include <String.h>
 #include <Ethernet.h>
 #include <SD.h>
-
+const int shieldAddress = 0x6E;
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED }; //physical mac address
 byte ip[] = { 192, 168, 10, 180 }; // ip
 byte subnet[] = { 255, 255, 255, 0 }; //subnet mask
 EthernetServer server(80); //server port
 String readString = String(100); //string for fetching data from address
+BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
+
 
 ///////////////////////
 String teststring = String(100);
@@ -21,7 +24,7 @@ int pos = 0;
 void setup() {
 pinMode(LED_BUILTIN, OUTPUT);
 digitalWrite(LED_BUILTIN, LOW);
-//----enable serial data print ----//
+//----enable serial data printï¿½----//
 
   Serial.begin(9600);
 
@@ -43,6 +46,11 @@ digitalWrite(LED_BUILTIN, LOW);
   server.begin();
   Serial.println("Ready");
 //--------------------------------//
+
+//---- Turn on control overrides----//
+    sdiCameraControl.begin();
+    sdiCameraControl.setOverride(true);
+
 }
 void loop() {
 
@@ -74,7 +82,7 @@ if (c == '\n') {
 	//print "finalstring" to com port;
             if(finalstring=="AF"){
             	Serial.println("im a fuction");
-            	digitalWrite(LED_BUILTIN, HIGH);
+            	AutoFocus();
             	Serial.println(finalstring);}
 
           //}
@@ -122,6 +130,59 @@ if (c == '\n') {
     }
   }
   }
+ void AutoAppeture() {
+  // This sends an Auto Iris adjustment command, with a simple camera control packet.
+
+  sdiCameraControl.writeCommandVoid(
+      1,   // Destination:    Camera 1
+      0,   // Category:       Lens
+      5    // Param:          Auto Iris
+    );
+}
+
+void Apeture(float scaledZoom){
+      sdiCameraControl.writeCommandFixed16(
+      1,         // Destination:    Camera 1
+      0,         // Category:       Lens
+      2,         // Param:          apeture fstop
+      0,         // Operation:      Assign Value
+      scaledZoom );
+      }
+  
+
+void AutoFocus(){
+  sdiCameraControl.writeCommandVoid(
+      1,   // Destination:    Camera 1
+      0,   // Category:       lens
+      1    // Param:          Auto focus
+    );}
+
+
+void SensorGain(int sensor){
+  sdiCameraControl.writeCommandInt8(
+      1,         // Destination:    Camera 1
+      1,         // Category:       video
+      1,         // Param:          White balance
+      0,         // Operation:      Assign Value
+      sensor );}
+
+void MWhiteBalance(int WB){
+      sdiCameraControl.writeCommandInt16(
+      1,         // Destination:    Camera 1
+      1,         // Category:       video
+      2,         // Param:          White balance
+      0,         // Operation:      Assign Value
+      WB );}
+
+void Exposure(int Exposure){
+      sdiCameraControl.writeCommandInt16(
+      1,         // Destination:    Camera 1
+      1,         // Category:       Lens
+      6,         // Param:          Zoom (Normalised)
+      0,         // Operation:      Assign Value
+      Exposure );}
+
+
 
 
 
