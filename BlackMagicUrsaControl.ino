@@ -1,5 +1,5 @@
 //#include "Arduino.h"
-//#include <BMDSDIControl.h>
+#include <BMDSDIControl.h>
 #include <String.h>
 #include <Ethernet.h>
 #include <SD.h>
@@ -9,7 +9,7 @@ byte ip[] = { 192, 168, 10, 180 }; // ip
 byte subnet[] = { 255, 255, 255, 0 }; //subnet mask
 EthernetServer server(80); //server port
 String readString = String(100); //string for fetching data from address
-//BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
+BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
 
 
 ///////////////////////
@@ -81,11 +81,11 @@ if (c == '\n') {
 Serial.println(finalstring);
             if(finalstring=="AF"){
             	Serial.println("im a fuction");
-            	//AutoFocus();
+            	AutoFocus();
             	Serial.println(finalstring);}
              if(finalstring=="AWB"){
              Serial.println("im a fuction");
-              //AutoAppeture();
+              AutoAppeture();
               Serial.println(finalstring);}
 
         
@@ -123,7 +123,7 @@ Serial.println(finalstring);
       }
     }
   }
-  }/*
+  }
  void AutoAppeture() {
   // This sends an Auto Iris adjustment command, with a simple camera control packet.
   sdiCameraControl.begin();
@@ -180,7 +180,7 @@ void Exposure(int Exposure){
       Exposure );}
 
 
-*/
+
 
 
 
