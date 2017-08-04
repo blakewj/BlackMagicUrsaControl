@@ -47,20 +47,24 @@ html {
 }
 
 .base {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, , 0, 1);
     color: #f48042;
     padding: 20px;
-     margin: 50;
+
 }
 
 .menu ul {
+    position: relative;
+  box-sizing: border-box;
     list-style-type: none;
-    margin: 50;
+   
     padding: 0;
 }
 .menu li {
-    padding: 0%;
-    margin-bottom: 10px;
+    padding: px;
+    width: 100%;
+
+    margin-bottom: 20px;
     background-color: #878888;
     color: #ffefff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -72,7 +76,7 @@ input[type='range'], input[type='range'][orient=vertical]::-webkit-slider-runnab
   
   writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
-    
+    width: 10px;
     height: 175px;
     padding: 0 5px;
 }
@@ -87,23 +91,24 @@ input[type='range']::-webkit-slider-runnable-track {
   background:#f48042;
 }
 a:link, a:visited {
+    position: relative;
+    box-sizing: border-box;
     text-align: justify;
     
-    border-radius: .55em;
+    border-radius: .6em;
     border-style: inset;
     border-color: #c4572d;
     
     
-    font-size:  .98em;
-    padding: 30%;
+    font-size:  70%;
+    padding: 20px;
     background-color: #878888;
     color:  #f48042;
     
-    white-space: 
- pre-wrap; 
-    display: block;
-    width: 50%;
-    height: 10px;
+
+    display:block;
+    width: 100%;
+    
     
 
 }

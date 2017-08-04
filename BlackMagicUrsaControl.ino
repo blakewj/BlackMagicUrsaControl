@@ -27,8 +27,6 @@ int SliceValInt;
 //////////////////////
 
 void setup() {
-pinMode(LED_BUILTIN, OUTPUT);
-digitalWrite(LED_BUILTIN, LOW);
 
 
 //----turn off Ethernet to load SD card----//
@@ -103,7 +101,7 @@ Serial.println(readString);
    
    Serial.println(header);
    SliceValInt = slideVal.toInt();
-    Serial.println(SliceValInt);
+   Serial.println(SliceValInt);
    SensorGain(SliceValInt);
    Serial.println("Sensor Gain");
           
@@ -143,6 +141,7 @@ Serial.println(header);}
              }
              myFile.close();
            }
+
          
                  File myFile1 = SD.open("URSAcss.css");
            if (myFile1) {
@@ -151,6 +150,7 @@ Serial.println(header);}
              }
              myFile1.close();
            }
+             
             
          
            
