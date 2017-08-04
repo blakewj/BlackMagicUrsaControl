@@ -18,13 +18,14 @@ String teststring2 = String(100);
 String finalstring = String(100);
 String flag = String(2);
 String header = String(100);
+String slideVal = String(100);
 int SliderStart =0;
 int SliderEnd =0;
 int startS = 0;
 int endS = 0;
 int lenS = 0;
 float SliceVal;
-String slideVal = String(100);
+
 //////////////////////
 
 void setup() {
@@ -82,17 +83,22 @@ if (c == '\n') {
 
 
   //capture string length
-lenS = readString.length();
+//lenS = readString.length();
+
 startS = readString.indexOf("?")+1; //find start of HTTP string "?"
-
-SliderStart = readString.indexOf("&")+1;
-Slice = readString.substring(startS,lenS);
-endS = Slice.indexOf("%");
+//Slice = readString.substring(startS,lenS);
+SliderStart = readString.indexOf("&");
 header = readString.substring(startS,SliderStart);
-slideVal = readString.substring(SliderStart, endS);
 
-Serial.println("-v--v-headerval-v-v--");
-   Serial.println(header);
+endS = readString.indexOf("%");
+slideVal = readString.substring(SliderStart+1, endS);
+
+
+
+
+
+Serial.println(header);
+   //Serial.println(header);
    Serial.println("-v--v-sliderval-v-v--");
    Serial.println(slideVal);
    Serial.println("---  ---");
