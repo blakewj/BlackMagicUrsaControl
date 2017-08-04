@@ -13,12 +13,9 @@ BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
 
 
 ///////////////////////
-String Slice = String(100);
-String teststring2 = String(100);
-String finalstring = String(100);
-String flag = String(2);
-String header = String(100);
-String slideVal = String(100);
+String Slice = String(50);
+String header = String(50);
+String slideVal = String(50);
 int SliderStart =0;
 int SliderEnd =0;
 int startS = 0;
@@ -79,36 +76,30 @@ if (c == '\n') {
   client.println("HTTP/1.1 200 OK"); //send new page
   client.println("Content-Type: text/html");
 
-  Serial.println(readString);
- 
-
-
-  //capture string length
-//lenS = readString.length();
-
 startS = readString.indexOf("?")+1; //find start of HTTP string "?"
-//Slice = readString.substring(startS,lenS);
+
 SliderStart = readString.indexOf("&");
 header = readString.substring(startS,SliderStart);
 
 endS = readString.indexOf("%");
 slideVal = readString.substring(SliderStart+1, endS);
+Serial.println(readString);
 
 
 
-
+            
 
 
 if(header =="MF"){
    
    
    Serial.println(header);
-   
    SliceVal = slideVal.toFloat();
    Serial.println(SliceVal);
-   MFocus(SliceVal);
-   Serial.println("Manual Focus");}
-              
+   
+   Serial.println("Manual Focus");
+   MFocus(SliceVal);}
+        
 
  if(header=="FS"){
    
@@ -139,41 +130,44 @@ if(header =="MF"){
           
  }
 
-              
+ if(header=="EXP"){
+   
+   Serial.println(header);
+   SliceValInt = slideVal.toInt();
+   Serial.println(SliceValInt);
+   Exposure(SliceValInt);
+   Serial.println("Exposure");
+          
+ }
+ 
+if(header=="AF"){
+AutoFocus();
+Serial.println(header);
+}
+if(header=="AAP");{
+AutoAppeture();
+Serial.println(header);}           
 
-            if(finalstring=="AF"){
-              Serial.println("AutoFocus");
-              //AutoFocus();
-              Serial.println(finalstring);}
-             if(finalstring=="AWB"){
-             Serial.println("AutoAppeture");
-             // AutoAppeture();
-              Serial.println(finalstring);}
              
              
-             
+            
 
         
           File myFile = SD.open("index.htm");
+         
           if (myFile) {
             // read from the file until there's nothing else in it:
             while (myFile.available()) {
               client.write(myFile.read());
+             
             }
             // close the file:
             myFile.close();
+           ;
 
           }
 
 
-
-
-
-          ///////////////////
-          //now output HTML data header
-         // client.println("HTTP/1.1 204 Zoomkat");
-          //client.println();
-          //client.println();
           delay(1);
           //stopping client
           client.stop();
@@ -182,13 +176,13 @@ if(header =="MF"){
           //clearing string for next read
           readString = "";
           Slice = "";
-          finalstring = "";
+          header = "";
 
         }
       }
     }
   }
-  }
+}
  void AutoAppeture() {
   // This sends an Auto Iris adjustment command, with a simple camera control packet.
   sdiCameraControl.begin();
