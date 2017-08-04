@@ -25,6 +25,7 @@ int startS = 0;
 int endS = 0;
 int lenS = 0;
 float SliceVal;
+int SliceValInt;
 
 //////////////////////
 
@@ -97,39 +98,46 @@ slideVal = readString.substring(SliderStart+1, endS);
 
 
 
-Serial.println(header);
-   //Serial.println(header);
-   Serial.println("-v--v-sliderval-v-v--");
-   Serial.println(slideVal);
-   Serial.println("---  ---");
- /* if(header =="MF"){
+
+if(header =="MF"){
    
    
    Serial.println(header);
-   Serial.println(slideVal);
-   MFOC = slideVal.toFloat();
-   MFocus(MFOC);
-   Serial.println("Manual Focusssss");
-              }
+   
+   SliceVal = slideVal.toFloat();
+   Serial.println(SliceVal);
+   MFocus(SliceVal);
+   Serial.println("Manual Focus");}
+              
 
  if(header=="FS"){
    
    Serial.println(header);
+   
+   SliceVal = slideVal.toFloat();
    Serial.println(slideVal);
-   MFOC = header.toInt();
-   Apeture(MFOC);
+   Apeture(SliceVal);
    Serial.println("Manual F-stop");
               }
 
  if(header=="SG"){
    
    Serial.println(header);
-   Serial.println(slideVal);
-   MFOC = header.toInt();
-   SensorGain(MFOC);
-   Serial.println("Manual F-stop");
-              }*/
-
+   SliceValInt = slideVal.toInt();
+    Serial.println(SliceValInt);
+   SensorGain(SliceValInt);
+   Serial.println("Sensor Gain");
+          
+ }
+ if(header=="MWB"){
+   
+   Serial.println(header);
+   SliceValInt = slideVal.toInt();
+   Serial.println(SliceValInt);
+   MWhiteBalance(SliceValInt);
+   Serial.println("Manual White Balance");
+          
+ }
 
               
 
