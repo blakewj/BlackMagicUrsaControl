@@ -87,19 +87,7 @@ Serial.println(readString);
 
 
 
-            
 
-
-if(header =="MF"){
-   
-   
-   Serial.println(header);
-   SliceVal = slideVal.toFloat();
-   Serial.println(SliceVal);
-   
-   Serial.println("Manual Focus");
-   MFocus(SliceVal);}
-        
 
  if(header=="FS"){
    
@@ -144,28 +132,30 @@ if(header=="AF"){
 AutoFocus();
 Serial.println(header);
 }
-if(header=="AAP");{
+if(header=="AAP"){
 AutoAppeture();
 Serial.println(header);}           
 
-             
-             
-            
-
-        
-          File myFile = SD.open("index.htm");
+            File myFile = SD.open("index.htm");
+           if (myFile) {
+             while (myFile.available()) {
+               client.write(myFile.read());
+             }
+             myFile.close();
+           }
          
-          if (myFile) {
-            // read from the file until there's nothing else in it:
-            while (myFile.available()) {
-              client.write(myFile.read());
-             
-            }
-            // close the file:
-            myFile.close();
-           ;
+                 File myFile1 = SD.open("URSAcss.css");
+           if (myFile1) {
+             while (myFile1.available()) {
+               client.write(myFile1.read());
+             }
+             myFile1.close();
+           }
+            
+         
+           
 
-          }
+          
 
 
           delay(1);
@@ -177,12 +167,15 @@ Serial.println(header);}
           readString = "";
           Slice = "";
           header = "";
+          SliceValInt = 0;
+          SliceVal = 0;
 
         }
       }
     }
   }
 }
+
  void AutoAppeture() {
   // This sends an Auto Iris adjustment command, with a simple camera control packet.
   sdiCameraControl.begin();
@@ -194,15 +187,15 @@ Serial.println(header);}
     );
 }
 
-void Apeture(float scaledZoom){
+void Apeture(float apeture){
   sdiCameraControl.begin();
   sdiCameraControl.setOverride(true);
       sdiCameraControl.writeCommandFixed16(
       1,         // Destination:    Camera 1
       0,         // Category:       Lens
-      2,         // Param:          apeture fstop
+      3,         // Param:          apeture fstop
       0,         // Operation:      Assign Value
-      scaledZoom );
+      apeture );
       }
   
 
@@ -246,15 +239,6 @@ void Exposure(int Exposure){
       0,         // Operation:      Assign Value
       Exposure );}
 
-void MFocus(float focus){
-  sdiCameraControl.begin();
-  sdiCameraControl.setOverride(true);
-      sdiCameraControl.writeCommandInt16(
-      1,         // Destination:    Camera 1
-      0,         // Category:       Lens
-      0,         // Param:         focus
-      0,         // Operation:      Assign Value
-      focus );}
 
 
 

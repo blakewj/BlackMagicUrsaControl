@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!link rel="stylesheet" type="text/css" href="URSAcss.css" />
+<link rel="stylesheet" type="text/css" href="URSAcss.css" />
 </head>
 <body>
 <div class="header">
-  <h1>Ursa</h1>
-  <p>control pannel for the ursa 4k camera</p>
+  <img src="TEC_LOGO.png" alt="Mountain View" style="width:35%;">
+  <p>Web Ui For The Black Magic Ursa 4k</p>
 </div>
 
 <div class="row">
@@ -34,7 +34,6 @@
 </div>
 
 <div class = "col-9 base">
-	<h3>Control Panel</h3>
 	
 
 
@@ -44,33 +43,35 @@
     
     
     <div>
-        <form action="" method="post">
-        <a href=\"" id="?MF" onclick = "myFunction('?MF','FocusSlider')" target=\"inlineframe\">Manual Focus</a>
-        <input type="range" min ="0.0" max="1.0" step ="0.1" id="FocusSlider" onclick = "myFunction('?MF','FocusSlider')">
-            <p id="demo"></p></form>
         
+        <div class = "col-2 base"> 
         <form action="" method="post">
         <a href=\"" id="?FS" onclick = "myFunction('?FS','APSlider')" target=\"inlineframe\">Appeture</a>
-        <input type="range" min ="-0.1" max="16.0" step ="0.1" id="APSlider" onclick = "myFunction('?FS','APSlider')"></form>
-        
-        
+        <input type="range" min ="0.0" max="1.0" step ="0.1" id="APSlider" onclick = "myFunction('?FS','APSlider','FSfeed')">
+        <p id="FSfeed"></p></form>
+        </div>
+     <div class = "col-2 base">   
         <form action="" method="post">
         <a href=\"" id="?SG" onclick = "myFunction('?SG','SGSlider')" target=\"inlineframe\">Sensor Gain</a>
-        <input type="range" min ="1" max="16" step ="1" id="SGSlider" onclick = "myFunction('?SG','SGSlider')"></form>
-        
+        <input type="range" min ="1" max="16" step ="1" id="SGSlider" onclick = "myFunction('?SG','SGSlider','SGfeed')">
+        <p id="SGfeed"></p></form></form>
+    </div>
+     <div class = "col-2 base"> 
         <form action="" method="post">
-        <a href=\"" id="?MWB" onclick = "myFunction('?MWB','WBSlider')" target=\"inlineframe\">Manual White Balance</a>
-        <input type="range" min ="3200" max="7500" step ="100" id="WBSlider" onclick = "myFunction('?MWB','WBSlider')"></form>
-        
+        <a href=\"" id="?MWB" onclick = "myFunction('?MWB','WBSlider','MWBfeed')" target=\"inlineframe\">White Balance</a>
+        <input type="range" min ="3200" max="7500" step ="100" id="WBSlider" onclick = "myFunction('?MWB','WBSlider','MWBfeed')">
+    <p id="MWBfeed"></p></form></div>
+         <div class = "col-2 base"> 
         <form action="" method="post">
-        <a href=\"" id="?EXP" onclick = "myFunction('?EXP','EXPSlider')" target=\"inlineframe\">Exposure</a>
-        <input type="range" min ="0" max="100" step ="1" id="EXPSlider" onclick = "myFunction('?EXP','EXPSlider')"></form>
+        <a href=\"" id="?EXP" onclick = "myFunction('?EXP','EXPSlider','EXPfeed')" target=\"inlineframe\">Exposure</a>
+        <input type="range" min ="0" max="100" step ="1" id="EXPSlider" onclick = "myFunction('?EXP','EXPSlider','EXPfeed');">
+    <p id="EXPfeed"></p></form></div>
 
 
         
         
     </div>
-	</div>
+	
 
 <script>
 function HTTPsend(url){
@@ -80,10 +81,10 @@ function HTTPsend(url){
 }
 </script>  
 <script>    
-function myFunction(url,val) {
+function myFunction(url,val,feed) {
     var x = url +"&"+ document.getElementById(val).value+"%";
-    
-    document.getElementById("demo").innerHTML = x;
+    var t = document.getElementById(val).value;
+    document.getElementById(feed).innerHTML = t;
     document.getElementById(url).href = x;
 }
 </script> 

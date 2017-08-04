@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #202121;
+    background-color: #000000;
 }
 
 
@@ -36,31 +36,21 @@ body {
 .col-12 {width: 100%;}
 
 
-.Button{
-    
-    background-color: aquamarine;
-    color: white;
-    font-size = 16px;
-    text-align: center;
-    width:150px;
-    margin:10px auto;
-    padding:7px 13px;
-}
-
 
 html {
-    font-family: "Lucida Sans", sans-serif;
+    font-family: "Helvetica";
 }
 .header {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
+    color: #f48042;
     padding: 15px;
 }
 
 .base {
-    background-color: rgba(94, 102, 80, 1);
-    color: #ffffff;
-    padding: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #f48042;
+    padding: 20px;
+     margin: 50;
 }
 
 .menu ul {
@@ -69,25 +59,20 @@ html {
     padding: 0;
 }
 .menu li {
-    padding: 15%;
-    margin-bottom: 5px;
+    padding: 0%;
+    margin-bottom: 10px;
     background-color: #878888;
     color: #ffefff;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
-.menu li:hover {
-    background-color: #ff9e00;
-     -webkit-transition: all 1.25s ease; /* Safari and Chrome */
-    -moz-transition: all 1.25s ease; /* Firefox */
-    transition: all 1.25s ease;
-}
+
 
 
 input[type='range'], input[type='range'][orient=vertical]::-webkit-slider-runnable-track, input[type='range']::-webkit-slider-thumb {
   
   writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
-    width: 8px;
+    
     height: 175px;
     padding: 0 5px;
 }
@@ -98,20 +83,36 @@ input[type='range']::-webkit-slider-runnable-track {
   width: 1.2em;
   height: 1.2em;
   border-radius: 1.75em;
-  box-shadow: 0 1px 2px #def3f8, inset 0 .225em .225em #0d1112;
-  background: #7ab9b3;
+  box-shadow: 0 1px 2px #f49d6e, inset 0 .225em .225em #0d1112;
+  background:#f48042;
 }
 a:link, a:visited {
-    padding: 10px;
-    background-color: #f44336;
-    color: white;
-    text-align: center; 
-    text-decoration: none;
-    display: inline-block;
+    text-align: justify;
+    
+    border-radius: .55em;
+    border-style: inset;
+    border-color: #c4572d;
+    
+    
+    font-size:  .98em;
+    padding: 30%;
+    background-color: #878888;
+    color:  #f48042;
+    
+    white-space: 
+ pre-wrap; 
+    display: block;
+    width: 50%;
+    height: 10px;
+    
+
 }
 
 a:hover, a:active {
-    background-color: red;
+    background-color: #ff9e00;
+      -webkit-transition: all 1.25s ease; /* Safari and Chrome */
+    -moz-transition: all 1.25s ease; /* Firefox */
+    transition: all .55s ease;
 }
 
 </style>
