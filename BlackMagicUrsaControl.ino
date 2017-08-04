@@ -1,4 +1,4 @@
-//#include "Arduino.h"
+#include "Arduino.h"
 #include <BMDSDIControl.h>
 #include <String.h>
 #include <Ethernet.h>
@@ -13,17 +13,17 @@ BMD_SDICameraControl_I2C  sdiCameraControl(shieldAddress);
 
 
 ///////////////////////
-String teststring = String(100);
+String Slice = String(100);
 String teststring2 = String(100);
 String finalstring = String(100);
 String flag = String(2);
 String header = String(100);
-int Slider1 =0;
-int Slider2 =0;
-int ind1 = 0;
-int ind2 = 0;
-int pos = 0;
-float MFOC;
+int SliderStart =0;
+int SliderEnd =0;
+int startS = 0;
+int endS = 0;
+int lenS = 0;
+float SliceVal;
 String slideVal = String(100);
 //////////////////////
 
@@ -36,7 +36,7 @@ digitalWrite(LED_BUILTIN, LOW);
 
   pinMode(10,OUTPUT);
   digitalWrite(10,HIGH);
-//----enable serial data print�----//
+//----enable serial data printï¿½----//
 
   Serial.begin(9600); 
 //---- Starting SD Card Int----//
@@ -64,35 +64,36 @@ void loop() {
 //---- Create a client connection
 EthernetClient client = server.available();
 if (client) {
-	while (client.connected()) {
-		if (client.available()) {
-			char c = client.read();
-			//----read char by char HTTP request----//
-			if (readString.length() < 100) {
-				//----store characters to string----//
-				readString+=(c);}
+  while (client.connected()) {
+    if (client.available()) {
+      char c = client.read();
+      //----read char by char HTTP request----//
+      if (readString.length() < 100) {
+        //----store characters to string----//
+        readString+=(c);}
 
 //----if HTTP request has ended----//
 if (c == '\n') {
-	client.println("HTTP/1.1 200 OK"); //send new page
-	client.println("Content-Type: text/html");
+  client.println("HTTP/1.1 200 OK"); //send new page
+  client.println("Content-Type: text/html");
 
   Serial.println(readString);
  
-	pos = readString.length(); 							//capture string length
-	ind1 = readString.indexOf("?")+1;	//find start of HTTP string "?"
-  Slider1 = readString.indexOf("&")+1;
 
-  
-	teststring = readString.substring(ind1,pos);			//capture front part of command string
-  teststring2 = readString.substring(Slider1,pos);      //capture front part of command string
-	ind2 = teststring.indexOf("%");	
-	Slider2 = teststring2.indexOf("%");//Find The End Of The HTTP String
-	finalstring = readString.substring(ind1, ind2 + ind1);	//capturing the servo command string from readString
-  header = readString.substring(ind1, Slider1-1);
-  slideVal = readString.substring(Slider2, ind2);
-   //Serial.println(header);
-   Serial.println("------");
+
+  //capture string length
+lenS = readString.length();
+startS = readString.indexOf("?")+1; //find start of HTTP string "?"
+
+SliderStart = readString.indexOf("&")+1;
+Slice = readString.substring(startS,lenS);
+endS = Slice.indexOf("%");
+header = readString.substring(startS,SliderStart);
+slideVal = readString.substring(SliderStart, endS);
+
+Serial.println("-v--v-headerval-v-v--");
+   Serial.println(header);
+   Serial.println("-v--v-sliderval-v-v--");
    Serial.println(slideVal);
    Serial.println("---  ---");
  /* if(header =="MF"){
@@ -127,12 +128,12 @@ if (c == '\n') {
               
 
             if(finalstring=="AF"){
-            	Serial.println("AutoFocus");
-            	AutoFocus();
-            	Serial.println(finalstring);}
+              Serial.println("AutoFocus");
+              //AutoFocus();
+              Serial.println(finalstring);}
              if(finalstring=="AWB"){
              Serial.println("AutoAppeture");
-              AutoAppeture();
+             // AutoAppeture();
               Serial.println(finalstring);}
              
              
@@ -166,7 +167,7 @@ if (c == '\n') {
           /////////////////////
           //clearing string for next read
           readString = "";
-          teststring = "";
+          Slice = "";
           finalstring = "";
 
         }
@@ -246,6 +247,7 @@ void MFocus(float focus){
       0,         // Param:         focus
       0,         // Operation:      Assign Value
       focus );}
+
 
 
 

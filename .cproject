@@ -27,6 +27,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SD/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/BlackMagicSdiLibrary}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.771193609" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -40,6 +43,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SD/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/BlackMagicSdiLibrary}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.28611577" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -53,6 +59,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SD/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SPI}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BlackMagicUrsaControl/libraries/BlackMagicSdiLibrary}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.660046893" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
