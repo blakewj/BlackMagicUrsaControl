@@ -27,7 +27,45 @@ Instructions:
  
 Please Refer To Source Code For More In-depth details.
 
+All commands must be structured in the following manner 
+                         
+192.168.10.180?COMMAND&
+{Arduino shield}(start command){your command}(End of command)
 
+End of command is &
+Start of command is ?
+
+Push buttons -
+
+	Auto appeture —— ?APP&
+	Auto focus — ?AF&
+
+Slider value or relative valuables
+
+Same command structure with and append value 
+
+
+192.168.10.180?COMMAND&VAL%
+{Arduino shield}(start command){your command}(End of command){val}(End of Value)
+
+End of command is &
+Start of command is ?
+
+Slider values 
+
+
+Exposure —— ?EXP&%
+Value range integer 0-n
+
+White balance —?MWB&%
+Value range integer 1-16
+
+F-stop —— ?FS&%
+Value Range Floating Point -1.0 — -16.0
+Sensor Gain ——- ?SG&%
+Value range integer 1-16
+
+	
 
 
 
