@@ -58,7 +58,8 @@ Exposure —— ?EXP&%
 Value range integer 0-n
 
 White balance —?MWB&%
-Value range integer 1-16
+Value range integer 3200-7600
+icrement 100
 
 F-stop —— ?FS&%
 Value Range Floating Point -1.0 — -16.0
