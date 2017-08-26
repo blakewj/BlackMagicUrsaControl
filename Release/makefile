@@ -9,22 +9,12 @@ RM := del
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
--include sketch_jul28a/subdir.mk
--include libraries\Wire\src\utility/subdir.mk
--include libraries\Wire\src/subdir.mk
 -include libraries\SPI\src/subdir.mk
 -include libraries\SD\src\utility/subdir.mk
 -include libraries\SD\src/subdir.mk
 -include libraries\Ethernet\src\utility/subdir.mk
 -include libraries\Ethernet\src/subdir.mk
--include libraries\BlackMagicSdiLibrary\BMDSDIControl/subdir.mk
 -include core\core/subdir.mk
--include BlackMagicSdiLibrary\BMDSDIControl\examples\TallyBlink/subdir.mk
--include BlackMagicSdiLibrary\BMDSDIControl\examples\ShieldInfo/subdir.mk
--include BlackMagicSdiLibrary\BMDSDIControl\examples\PotZoom/subdir.mk
--include BlackMagicSdiLibrary\BMDSDIControl\examples\CustomJoystickShield/subdir.mk
--include BlackMagicSdiLibrary\BMDSDIControl\examples\AutoIris/subdir.mk
--include BlackMagicSdiLibrary\BMDSDIControl/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -64,7 +54,7 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 AR += \
-E:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar \
+Z:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar \
 
 ELF += \
 BlackMagicUrsaControl.elf \
@@ -80,19 +70,19 @@ all: BlackMagicUrsaControl
 BlackMagicUrsaControl: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"C:\Users\user\eclipse\cpp-oxygen\eclipse\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "E:/GitRepository/BlackMagicUrsaControl/Release/BlackMagicUrsaControl.elf"
+	"C:\Users\blake\eclipse\cpp-oxygen\eclipse\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "Z:/GitRepository/BlackMagicUrsaControl/Release/BlackMagicUrsaControl.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-E:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar: $(AR_OBJ)
+Z:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"C:\Users\user\eclipse\cpp-oxygen\eclipse\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    E:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar $(AR_OBJ)
+	"C:\Users\blake\eclipse\cpp-oxygen\eclipse\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    Z:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 BlackMagicUrsaControl.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"C:\Users\user\eclipse\cpp-oxygen\eclipse\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "E:\GitRepository\BlackMagicUrsaControl/Release/BlackMagicUrsaControl.elf"   $(LINK_OBJ) $(AR)   E:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar  "-LE:\GitRepository\BlackMagicUrsaControl/Release" -lm
+	"C:\Users\blake\eclipse\cpp-oxygen\eclipse\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "Z:\GitRepository\BlackMagicUrsaControl/Release/BlackMagicUrsaControl.elf"   $(LINK_OBJ) $(AR)   Z:/GitRepository/BlackMagicUrsaControl/Release/arduino.ar  "-LZ:\GitRepository\BlackMagicUrsaControl/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 

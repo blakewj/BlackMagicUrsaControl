@@ -36,20 +36,10 @@ CPP_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
-BlackMagicSdiLibrary/BMDSDIControl \
-BlackMagicSdiLibrary/BMDSDIControl/examples/AutoIris \
-BlackMagicSdiLibrary/BMDSDIControl/examples/CustomJoystickShield \
-BlackMagicSdiLibrary/BMDSDIControl/examples/PotZoom \
-BlackMagicSdiLibrary/BMDSDIControl/examples/ShieldInfo \
-BlackMagicSdiLibrary/BMDSDIControl/examples/TallyBlink \
 core/core \
-libraries/BlackMagicSdiLibrary/BMDSDIControl \
 libraries/Ethernet/src \
 libraries/Ethernet/src/utility \
 libraries/SD/src \
 libraries/SD/src/utility \
 libraries/SPI/src \
-libraries/Wire/src \
-libraries/Wire/src/utility \
-sketch_jul28a \
 
